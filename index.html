@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUN X FREE HACK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Animated background elements */
+        .bg-particle {
+            position: absolute;
+            background: rgba(213, 0, 0, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .grid-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(to right, rgba(213, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(213, 0, 0, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 500px;
+            height: 100vh;
+            max-height: 700px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(213, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #D6001E, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 0px 10px rgba(214, 0, 30, 0.5);
+        }
+        
+        .telegram-link {
+            color: #D6001E;
+            font-size: 24px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .telegram-link:hover {
+            transform: scale(1.1);
+            color: #ff4d4d;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            padding: 20px;
+        }
+        
+        .prediction-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px;
+            width: 100%;
+            max-width: 320px;
+            border-radius: 12px;
+            border: 2px solid #D50000;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0px 0px 20px rgba(213, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prediction-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(213, 0, 0, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
+            z-index: -1;
+        }
+        
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+        
+        .prediction-display {
+            display: flex;
+            width: 250px;
+            height: 250px;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 50%;
+            border: 5px solid #D50000;
+            background: rgba(20, 20, 20, 0.9);
+            box-shadow: 
+                0px 0px 25px rgba(213, 0, 0, 0.8),
+                inset 0px 0px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pulse-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { 
+                transform: scale(1);
+                opacity: 1;
+                border-color: #D50000;
+            }
+            100% { 
+                transform: scale(1.5);
+                opacity: 0;
+                border-color: rgba(213, 0, 0, 0.1);
+            }
+        }
+        
+        #result {
+            font-size: 32px;
+            color: #D6001E;
+            font-weight: bold;
+            text-shadow: 0px 0px 15px rgba(214, 0, 30, 0.9);
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .clock-display {
+            margin: 15px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #D50000;
+            text-shadow: 0px 0px 8px rgba(213, 0, 0, 0.8);
+            letter-spacing: 1px;
+        }
+        
+        .attack-button {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #D6001E, #ff4d4d);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0px 0px 20px rgba(214, 0, 30, 0.7);
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .attack-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .attack-button:hover::before {
+            left: 100%;
+        }
+        
+        .attack-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0px 0px 25px rgba(214, 0, 30, 1);
+        }
+        
+        .attack-button:active {
+            transform: translateY(1px);
+            opacity: 0.9;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(213, 0, 0, 0.3);
+        }
+        
+        .stat-box {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #D6001E;
+            text-shadow: 0px 0px 8px rgba(214, 0, 30, 0.7);
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 5px;
+        }
+        
+        .disclaimer {
+            text-align: center;
+            font-size: 10px;
+            color: #777;
+            margin-top: 20px;
+            padding: 0 10px;
+            line-height: 1.4;
+        }
+        
+        .loading-animation {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(213, 0, 0, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #D6001E;
+            animation: spin 1s linear infinite;
+            margin: 15px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Animation for the result */
+        @keyframes resultPop {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .result-animation {
+            animation: resultPop 0.5s forwards;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+                max-height: 100%;
+            }
+            
+            .prediction-display {
+                width: 200px;
+                height: 200px;
+            }
+            
+            #result {
+                font-size: 28px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-lines"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="logo">FUN X FREE HACK</div>
+            <a href="https://t.me/+6zqJfsKZ0VpkNGJl" class="telegram-link" target="_blank">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+        </div>
+        
+        <div class="main-content">
+            <div class="prediction-box">
+                <div class="prediction-display">
+                    <div class="pulse-ring"></div>
+                    <span id="result">SURESHOT</span>
+                </div>
+                
+                <div class="clock-display">
+                    <i class="far fa-clock"></i>
+                    <span id="textview1">00:00:00</span>
+                </div>
+                
+                <div class="loading-animation" id="loading"></div>
+                
+                <button id="button1" class="attack-button">𝐀𝐓𝐓𝐀𝐂𝐊</button>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-value" id="big-count">0</div>
+                    <div class="stat-label">BIG WINS</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="small-count">0</div>
+                    <div class="stat-label">SMALL WINS</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="accuracy">0%</div>
+                    <div class="stat-label">ACCURACY</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="disclaimer">
+            This is a simulation for entertainment purposes only. Trading involves risk; past performance doesn't guarantee future results. Not financial advice.
+        </div>
+    </div>
+
+    <script>
+        // Create animated background particles
+        function createParticles() {
+            const particles = 30;
+            const container = document.body;
+            
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('bg-particle');
+                
+                const size = Math.random() * 20 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 10;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}vw`;
+                particle.style.top = `${posY}vh`;
+                particle.style.animation = `
+                    float ${duration}s ease-in-out ${delay}s infinite alternate
+                `;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Live clock for textview1
+        function updateClock() {
+            let now = new Date();
+            let formattedTime = now.toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: true 
+            });
+            document.getElementById('textview1').innerText = formattedTime;
+        }
+        
+        // Initialize stats
+        let bigCount = 0;
+        let smallCount = 0;
+        let totalPredictions = 0;
+        
+        function updateStats(trend) {
+            totalPredictions++;
+            
+            if (trend === "BIG") {
+                bigCount++;
+            } else {
+                smallCount++;
+            }
+            
+            document.getElementById('big-count').innerText = bigCount;
+            document.getElementById('small-count').innerText = smallCount;
+            
+            const accuracy = totalPredictions > 0 ? 
+                Math.round((Math.random() * 30 + 70) * 10) / 10 : 0;
+            document.getElementById('accuracy').innerText = `${accuracy}%`;
+        }
+        
+        // Handle button click event
+        document.getElementById('button1').addEventListener('click', function() {
+            let button = this;
+            let result = document.getElementById('result');
+            let loading = document.getElementById('loading');
+            
+            // Simulate vibration effect (optional, works only on mobile devices)
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100]);
+            }
+            
+            // Hide button and show loading
+            button.style.display = 'none';
+            loading.style.display = 'block';
+            
+            // Change result text to "ATTACKING..."
+            result.innerText = "𝐀𝐓𝐓𝐀𝐂𝐊𝐈𝐍𝐆....";
+            result.classList.remove('result-animation');
+            void result.offsetWidth; // Trigger reflow
+            result.classList.add('result-animation');
+            
+            // After 3.5 seconds, predict "BIG" or "SMALL"
+            setTimeout(() => {
+                let randomNum = Math.floor(Math.random() * 10);
+                let trend = randomNum < 5 ? "BIG" : "SMALL";
+                
+                result.innerText = trend;
+                result.classList.remove('result-animation');
+                void result.offsetWidth; // Trigger reflow
+                result.classList.add('result-animation');
+                
+                updateStats(trend);
+                
+                // Show button again after 35 seconds
+                setTimeout(() => {
+                    button.style.display = 'block';
+                    loading.style.display = 'none';
+                }, 35000);
+            }, 3500);
+        });
+        
+        // Initialize
+        window.onload = function() {
+            createParticles();
+            updateClock();
+            setInterval(updateClock, 1000);
+        };
+    </script>
+</body>
+</html>
